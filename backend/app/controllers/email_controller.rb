@@ -1,11 +1,13 @@
-class ApplicationController < ActionController::API
+
+
+class EmailController < ApplicationController
     # send email using sendgrid
     require 'sendgrid-ruby'
     include SendGrid
    
     def create
         to_email = JSON.parse(request.body.read)['email']
-        from_email = 'cty549868165@gmail.com'
+        from_email = 'cty549868165@gmail.com' # not safe, could be put in config file '.env'
         puts "to_email: #{to_email}"
 
         from = Email.new(email: from_email)

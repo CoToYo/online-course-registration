@@ -112,6 +112,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.4.3)
@@ -143,6 +145,9 @@ GEM
     rake (13.0.6)
     reline (0.3.3)
       io-console (~> 0.5)
+    ruby_http_client (3.5.5)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     sqlite3 (1.6.2-arm64-darwin)
     thor (1.2.1)
     timeout (0.3.2)
@@ -160,7 +165,9 @@ DEPENDENCIES
   bootsnap
   debug
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)
+  sendgrid-ruby
   sqlite3 (~> 1.4)
   tzinfo-data
 
