@@ -170,7 +170,7 @@
                 formCompleted: false,
                 // submitConfrim: false,
                 PageNo: 1,
-                name_1: "",
+                name_1: ".",
                 name_2: ".",
                 phone: ".",
                 email: ".",
