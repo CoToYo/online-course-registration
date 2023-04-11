@@ -17,7 +17,7 @@
                     <v-label for="name_2">お名前（かな）</v-label>
                 </v-col>
                 <v-col class="text-col" cols="8" md="6">
-                    <v-text-field placeholder="やまだ たろう" variant="outlined" id="name_2" v-model="name_2" :rules="[rules.name]"></v-text-field>
+                    <v-text-field placeholder="やまだ たろう" variant="outlined" id="name_2" v-model="name_2"></v-text-field>
                 </v-col>
             </v-row>
             <v-row class="row-text">
@@ -134,7 +134,7 @@
     <div v-show="PageNo === 3">
         <v-container>
             <div class="form-div">
-                <span>送信完了</span>
+                <div style="display: flex; justify-content: center;"><span>送信完了</span></div>
                 <v-row class="row-text">
                     <v-col cols="6" md="2"><span>お名前（漢字）</span></v-col>
                     <v-col cols="6" md="4">{{ name_1 }}</v-col>
@@ -170,7 +170,7 @@
                 formCompleted: false,
                 // submitConfrim: false,
                 PageNo: 1,
-                name_1: ".",
+                name_1: "",
                 name_2: ".",
                 phone: ".",
                 email: ".",
@@ -237,7 +237,6 @@
                 if(this.ableToSubmit()){
                     // this.formCompleted = true
                     this.PageNo = 2
-                    getName_1()
                 }
                 
             },
@@ -253,19 +252,6 @@
                 this.sendEmail()
                 this.PageNo = 3
             },
-            getName_1() {
-                // return this.name_1
-                this.$set(this.name_1, this.name_1)
-            },
-            getName_2() {
-                return this.name_2
-            },
-            getPhone() {
-                return this.phone
-            },
-            getEmail() {
-                return this.email
-            },
             
         },
         computed :{
@@ -277,6 +263,8 @@
 <style lang="scss" scoped>
 .form-div {
     // transform: translate(10%, 0%);
+    // display: flex;
+    // justify-content: ce;
     width: 100vw;
 }
 .row-text {
