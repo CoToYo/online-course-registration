@@ -4,14 +4,22 @@ class ApplicationController < ActionController::API
     include SendGrid
    
     def create
-        to_email = JSON.parse(request.body.read)['email']
+        message = JSON.parse(request.body.read)
         from_email = 'cty549868165@gmail.com'
+        to_email = message['email']
+        name_1 = message['name_1']
+        name_2 = message['name_2']
+        phone = message['phone']
+        selectedDays = message['selectedDays']
+        selectedTimes = message['selectedTimes']
+        selectedCities = message['selectedCities']
+        selectedInterests = message['selectedInterests']
         puts "to_email: #{to_email}"
 
         from = Email.new(email: from_email)
         to = Email.new(email: to_email)
-        subject = 'Sending with SendGrid is Fun'
-        content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+        subject = 'こんにちは'
+        content = Content.new(type: 'text/plain', value: name_1)
         mail = Mail.new(from, subject, to, content)
 
         sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])

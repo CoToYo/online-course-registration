@@ -9,13 +9,13 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "nuxt": "^3.3.3",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.3.1"
+    "nuxt": "^3.3.3"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/proxy": "^2.1.0"
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/font": "^7.2.96",
+    "@mdi/js": "^7.2.96",
+    "sass": "^1.61.0",
+    "vuetify": "^3.1.13"
   }
 }
