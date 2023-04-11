@@ -212,7 +212,7 @@
             },
             async sendEmail() {
                 try {
-                    const response = await fetch('http://localhost:3000/send_email', {
+                    const response = await fetch('https://rubybackend.onrender.com:10000/send_email', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json'
