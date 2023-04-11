@@ -116,14 +116,14 @@
                     <v-col cols="6" md="4">{{ selectedTimes }}</v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="6" md="2"></v-col>
-                    <v-col cols="6" md="4">
+                    <v-col cols="2" md="2"></v-col>
+                    <v-col cols="10" md="6">
                         <v-btn @click="backToForm" block class="back-btn"> 修 正</v-btn>
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="6" md="2"></v-col>
-                    <v-col cols="6" md="4">
+                    <v-col cols="2" md="2"></v-col>
+                    <v-col cols="10" md="6">
                         <v-btn type="submit" @click="submitConfirm"  block class="submit-btn">この内容で送信</v-btn>
                     </v-col>
                     
@@ -212,7 +212,7 @@
             },
             async sendEmail() {
                 try {
-                    const response = await fetch('https://rubybackend.onrender.com:10000/send_email', {
+                    const response = await fetch('https://rubybackend.onrender.com/send_email', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json'
