@@ -8,7 +8,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # origins "localhost:8080 || https://tubular-kleicha-14687e.netlify.app"
-    origin '*'
+    origins '*'
 
     resource "*",
       headers: :any,
