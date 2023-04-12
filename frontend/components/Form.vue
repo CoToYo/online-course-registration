@@ -43,7 +43,7 @@
                 <v-col class="label-col" cols="8" md="2">
                     <!-- <v-icon class="red-dot" icon="mdi-circle-medium" size="40"></v-icon> -->
                     <v-icon class="red-dot" icon="mdi-circle-medium" size="40"></v-icon>
-                    <v-label for="">メールアドレス</v-label>
+                    <v-label for="">ご希望のコース</v-label>
                 </v-col>
                 <v-col class="text-col" cols="8" md="6">
                     <interestMenu @gate_SelectedInterests="updateSelectedInterests"/>    
