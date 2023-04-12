@@ -1,7 +1,7 @@
 <template>
     <v-app class="mainPage">
         <Header />
-        <ProgressBar />
+        <!-- <ProgressBar /> -->
         <Form />
     </v-app>
 

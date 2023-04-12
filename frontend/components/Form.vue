@@ -1,7 +1,7 @@
 <template>
-    <!-- <ProgressBar :pageNo="PageNo" /> -->
-    <div v-show="PageNo === 1">
-        <v-form  class="form-div" @submit.prevent="">
+    <ProgressBar :pageNo="PageNo"/>
+    <div v-show="PageNo === 'page_1'">
+        <v-form  class="form-div" @submit.prevent="goConfirmPage">
             <v-row class="row-text">
                 <v-col class="label-col" cols="8" md="2">
                     <v-icon class="red-dot" icon="mdi-circle-medium" size="40"></v-icon>
@@ -36,7 +36,7 @@
                     <v-label for="email">メールアドレス</v-label>
                 </v-col>
                 <v-col class="text-col" cols="8" md="6">
-                    <v-text-field placeholder="name@abcdefg.com" variant="outlined" id="email" :rules="[rules.required, rules.email]" v-model="email" required></v-text-field>
+                    <v-text-field placeholder="name@abcdefg.com" variant="outlined" id="email" :rules="[rules.required, rules.email]" v-model="email"></v-text-field>
                 </v-col>
             </v-row>
             <v-row class="row-menu">
@@ -74,13 +74,13 @@
             </v-row>
             <v-row class="row-menu">
                 <v-col cols="5" md="5">
-                    <v-btn block type="submit" @click="goConfirmPage" class="submit-btn">プライバシーポリシーに同意して確認 > </v-btn>
+                    <v-btn block type="submit" class="submit-btn">プライバシーポリシーに同意して確認 > </v-btn>
                 </v-col>
             </v-row>
         </v-form>
     </div>
     <!--  -->
-    <div v-show="PageNo === 2">
+    <div v-show="PageNo === 'page_2'">
         <v-container>
             <div class="form-div">
                 <v-row class="row-text">
@@ -131,10 +131,14 @@
         </div>
         </v-container>
     </div>
-    <div v-show="PageNo === 3">
+    <div v-show="PageNo === 'page_3'">
         <v-container>
             <div class="form-div">
-                <div style="display: flex; justify-content: center;"><span>送信完了</span></div>
+                
+                <v-row class="row-text">
+                    <v-col cols="4" md="4"><h2>送信完了</h2></v-col>
+                </v-row>
+                
                 <v-row class="row-text">
                     <v-col cols="6" md="2"><span>お名前（漢字）</span></v-col>
                     <v-col cols="6" md="4">{{ name_1 }}</v-col>
@@ -168,8 +172,9 @@
         data() {
             return {
                 formCompleted: false,
+                validFormInput: true,
                 // submitConfrim: false,
-                PageNo: 1,
+                PageNo: 'page_1',
                 name_1: ".",
                 name_2: ".",
                 phone: ".",
@@ -184,14 +189,14 @@
                     counter: value => value.length <= 20 || 'Max 20 characters',
                     name: value => {
                         const pattern = /^([ぁ-んァ-ン一-龠\s]+)$/
-                        return (pattern.test(value) || value.length == 0) || '※「お名前（漢字）」は入力必須です。'
+                        return pattern.test(value) || '※「お名前（漢字）」は入力必須です。'
                     },
                     phone: value => {
                         const pattern = /^([0-9]{2}-[0-9]{4}-[0-9]{4})$/
                         return pattern.test(value) || '※「電話番号」を正しく入力してください。'
                     },
                     email: value => {
-                        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                         return pattern.test(value) || '※「メールアドレス」を正しく入力してください。'
                     },
                 },
@@ -233,25 +238,32 @@
                         console.error(error)
                 }
             },
-            goConfirmPage() {
+            goConfirmPage(event) {
                 if(this.ableToSubmit()){
                     // this.formCompleted = true
-                    this.PageNo = 2
+                    this.PageNo = 'page_2'
                 }
-                
+                // this.PageNo = 'page_2'
             },
             backToForm() {
                 // this.formCompleted = false
-                this.PageNo = 1
+                this.PageNo = 'page_1'
             },
             ableToSubmit() {
                 // Check if all required fields are filled out
-                return !(this.name_1.length * this.phone.length * this.email.length * this.selectedDays.length * this.selectedTimes.length * this.selectedCites.length * this.selectedInterests.length) == 0
+                // const test = !(this.name_1.length * this.phone.length * this.email.length * this.selectedDays.length * 
+                // this.selectedTimes.length * this.selectedCites.length * this.selectedInterests.length) == 0
+
+                return (this.rules.name(this.name_1) == true && (this.rules.name(this.name_2)  == true || this.name_2.length == 0)  && 
+                this.rules.phone(this.phone) == true  && this.rules.email(this.email) == true)
+
             },
             submitConfirm() {
                 this.sendEmail()
-                this.PageNo = 3
+                this.PageNo = 'page_3'
             },
+
+            
             
         },
         computed :{
