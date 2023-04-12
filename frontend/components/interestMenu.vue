@@ -57,7 +57,7 @@
             selectedStringed: '',
             selection: '',
             
-         }
+        }
         },
         watch: {
             selectedDrum(newValue, oldValue) {
@@ -70,8 +70,7 @@
             selectedStringed(newValue, oldValue) {
                 if(newValue != oldValue && newValue != ''){
                     this.selection = newValue
-                    this.selectedDrum = ''
-                    
+                    this.selectedDrum = ''  
                 }
             }
         },
@@ -96,7 +95,6 @@
 <style lang="scss" scoped>
 .container {
     width: 100%;
-    
 }
 .interestMenu-div {
     display: flex;

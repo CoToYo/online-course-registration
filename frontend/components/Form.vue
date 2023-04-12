@@ -296,7 +296,7 @@
     color: transparent;
 }
 .label-col {
-    display: flex;
+    // display: flex;
     // justify-content:start;
 }
 .text-col {
